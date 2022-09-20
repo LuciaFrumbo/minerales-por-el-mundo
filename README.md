@@ -1,0 +1,1 @@
+# minerales-por-el-mundo
