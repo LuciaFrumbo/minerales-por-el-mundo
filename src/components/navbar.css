@@ -1,0 +1,26 @@
+nav {
+    background-color: #ffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em; }
+  
+  .header__logo {
+    display: flex; }
+  
+  a {
+    text-decoration: none;
+    color: #000; }
+    a:hover {
+      color: #9b9b9a; }
+  
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5em;
+    list-style-type: none; }
+
+  
