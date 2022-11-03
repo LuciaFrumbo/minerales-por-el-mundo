@@ -1,31 +1,53 @@
 import React, {useState, useEffect} from 'react';
 import ItemList from './ItemList';
-import {products} from '../components/AsyncMock';
 import {useParams} from 'react-router-dom';
+import RingLoader from  "react-spinners/ClipLoader";
+import {collection, getDocs, query, where} from "firebase/firestore"
+import {database} from "../services/firebaseConfig"
 
 function ItemListContainer ({greeting}) {
     const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const {categoryName} = useParams();
     
     useEffect(() => {
-        const getProducts = () => {
-            return new Promise((res) => {
-                const prodFiltrados = products.filter((prod) => prod.clasificacion === categoryName);
-                
-                setTimeout (() => {
-                    res(categoryName ? prodFiltrados : products)
-        
-                }, 2000)
+        const collectionProd = collection(database,"productos");
+       
+       const referencia = categoryName
+       ? query(collectionProd, where ("clasificacion", "==", categoryName),)
+       : collectionProd;
+
+
+        getDocs(referencia)
+        .then((res) =>{
+            const products = res.docs.map((prod) =>{
+                return {
+                    id: prod.id,
+                    ...prod.data(),
+                }
             })
-        };
-        getProducts().then((res) => {
-            setItems(res)
+            setItems(products);
         })
+
+        .catch((error) => {
+            console.log(error);
+        })
+        .finally(() => {
+            setLoading(false);
+            });
 
     }, [categoryName]);
 
-    console.log(categoryName)
+    if (loading) {
+        return (
+            <div class="ringLoader">
+                <RingLoader/>
+            </div>
+        );
+    }
+
+
 
     return (
         <div>

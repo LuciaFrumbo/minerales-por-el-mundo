@@ -1,0 +1,21 @@
+.order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    margin: 5em 10em 15em 10em;
+    border-color: black;
+    border-style: dashed;
+}
+
+.formulario {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    border-color: black;
+    border-style: dashed;
+    margin: 5em 30em 15em 30em;
+}

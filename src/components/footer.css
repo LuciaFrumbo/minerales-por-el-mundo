@@ -1,0 +1,15 @@
+footer {
+    background-color: #000; }
+    footer .contact__me {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 1em; }
+      footer .contact__me__city {
+        color: #fff; }
+      footer .contact__me__email {
+        color: #fff; }
+    footer .publi {
+      text-align: end;
+      color: #fff; }

@@ -5,7 +5,6 @@
   padding: 0;
   box-sizing: border-box; }
 
-/*Globales*/
 body {
   max-width: 100%; }
 
@@ -30,7 +29,7 @@ body {
     .product__card__origen {
       text-align: center; }
     .product__card__buy {
-      color: #000;
+      color: #000  !important;
       border: solid 0.1em !important; }
   
   #add__carrito {
@@ -55,18 +54,10 @@ body {
         text-align: center;
     }
 
-    .itemcount {
+    .ringLoader {
+      padding: 10em;
       display: flex;
-      flex-direction: row;
-      gap: 1em;
-      align-items: center;
       justify-content: center;
-    }
-
-    .product__text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
 
         

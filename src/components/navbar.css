@@ -10,10 +10,10 @@ nav {
     display: flex; }
   
   a {
-    text-decoration: none;
-    color: #ffff; }
+    text-decoration: none  !important;
+    color: #ffff  !important; }
     a:hover {
-      color: #9b9b9a; }
+      color: #9b9b9a  !important; }
   
   .navbar {
     display: flex;
@@ -32,6 +32,20 @@ nav {
       justify-content: center;
       padding: 0.3em;
       margin-bottom: 0.1em;
-    }
+        }
 
+        .navbar__submenu__item {
+          text-decoration: none  !important;
+          display: none;
+        }
+
+        .navbar__item--hover:hover {
+          color:#000  !important;
+        }
+
+        .navbar__submenu:hover > ul {
+          display:block;
+          background-color:#9b9b9a; 
+          position:absolute;
+        }
   

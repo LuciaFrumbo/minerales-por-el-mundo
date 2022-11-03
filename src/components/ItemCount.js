@@ -1,24 +1,27 @@
-import { useState } from "react"
+import React, { useState } from "react";
 
-const ItemCount = () => {
+const ItemCount = (props) => {
     const [count, setCount] = useState(0)
+    const { prueba } = props;
 
-    const increment = () => {
-        if (count<5) {
-            setCount(count + 1)
-        }
-    }
-    const decrement = () => {
-        if (count>0) {
-            setCount(count - 1)
-        }
-    }
+    const sumar = () => {
+        count < props.stock && setCount(count + 1);
+    };
+
+    const restar = () => {
+        count > props.initial && setCount(count - 1);
+    };
+
+    const add = () => {
+        prueba(count);
+    };
+
     return (
         <div class="itemcount">
-        <button onClick={decrement}> - </button>
+        <button disabled={count === props.initial} onClick={restar}> - </button>
         <h2>{count}</h2>
-        <button onClick={increment}> + </button>
-        <button>Agregar al carrito</button>
+        <button disabled={count === props.stock} onClick={sumar}> + </button>
+        <button onClick={add} className="add-btn">AGREGAR AL CARRITO</button>
         </div>
     )
 

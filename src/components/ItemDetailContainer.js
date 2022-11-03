@@ -1,33 +1,43 @@
 import React, {useEffect, useState} from "react";
 import ItemDetail from "./ItemDetail";
-import { products } from "./AsyncMock";
 import { useParams } from "react-router-dom";
+import RingLoader from  "react-spinners/ClipLoader";
+import { collection, doc, getDoc } from "firebase/firestore";
+import {database} from "../services/firebaseConfig"
 
 const ItemDetailContainer = () => {
     const [item, setItem] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const {id} = useParams();
 
     useEffect(() => {
-        const traerProducto = () => {
-            return new Promise((res, rej) => {
-                const producto = products.find((prod) => prod.id === +id);
+        const collectionProd = collection(database, "productos")
+        const ref = doc(collectionProd, id)
 
-                setTimeout(() => {
-                    res(producto);
-                }, 2000);
-            });
-        };
-        traerProducto()
-        .then((res) =>{
-            setItem(res);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+        getDoc(ref)
+            .then((res) =>{
+                setItem({
+                    id: res.id,
+                    ...res.data(),
+                });
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+                });
+       
 }, [id]);
 
-console.log(item);
+if (loading) {
+    return (
+        <div class="ringLoader">
+            <RingLoader/>
+        </div>
+    );
+}
 
 return (
     <div className="item-list-container">
