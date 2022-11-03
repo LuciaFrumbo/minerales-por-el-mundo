@@ -9,8 +9,7 @@ const Form =() => {
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [email2, setEmail2] = useState('');
-    const [loading, setLoading] = useState(false);
-
+    const [telefono, setTelefono] = useState('');
     const [orderId, setOrderId] = useState('');
 
     const { cart, total, borrarTodo } = useContext(CartContext);
@@ -20,7 +19,7 @@ const Form =() => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const order = {
-            comprador: {name, lastName, email, email2},
+            comprador: {name, lastName, email, email2, telefono},
             items: cart,
             total: precioTotal,
             fecha: serverTimestamp(),
@@ -35,7 +34,6 @@ const Form =() => {
     .catch((error) => {
         console.log(error);
     })
-    .finally(() => setLoading(false));
 };
 
     const handleChangeName = (e) => {
@@ -54,6 +52,10 @@ const Form =() => {
         setEmail2(e.target.value);
     };
 
+    const handleChangeTelefono = (e) => {
+        setTelefono(e.target.value);
+    };
+
     if (orderId) {
         if (email!=="" && email===email2) {
             return (
@@ -63,7 +65,6 @@ const Form =() => {
                 <h6> el ID de tu compra es {orderId} </h6>
                 <h5> NO TE OLVIDES DE ANOTARLO</h5>
                 </div>
-
             );  
     
         }
@@ -108,7 +109,15 @@ const Form =() => {
                     onChange={handleChangeEmail2}
                     value={email2}
                 />
-                <button>{loading ? 'Enviando...' : 'Enviar'}</button>
+                <label>TELEFONO</label>
+                <input
+                    type="number"
+                    name="telefono"
+                    placeholder="TELEFONO"
+                    onChange={handleChangeTelefono}
+                    value={telefono}
+                />
+                <button>ENVIAR</button>
             </form>
         </div>
     );

@@ -8,9 +8,13 @@ e-commerce para emprendimiento de venta de piedras y minerales, desarrollado par
 ## Librerías utilizadas
 
 - [Firebase](https://firebase.google.com)
+Para guardar los productos y ordenes de compra
 - [Sweetalert](https://sweetalert.js.org/)
+Para mejorar la experiencia de usuario al agregar o quitar productos del carrito
 - [Bootstrap](https://getbootstrap.com)
+Para realizar el carrito 
 - [React-spinners](https://davidhu.io/react-spinners)
+Para mostrarlo en caso de que demore la carga de los productos y generar una mejor experiencia de usuario
 - React-router-dom
 
 ## Funcionalidades del proyecto
